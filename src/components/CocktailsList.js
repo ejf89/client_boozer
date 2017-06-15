@@ -4,7 +4,7 @@ import CocktailDetail from './CocktailDetail'
 
 const CocktailsList = (props) => {
 
-  const list = props.cocktails.map( (cocktail) => <li key={cocktail.id}><Link to={`/cocktails/${cocktail.id}`}> {cocktail.name} </Link> </li>)
+  const list = props.cocktails.map( (cocktail) => <li key={cocktail.id}><Link to={`/cocktails/${cocktail.id}`}> {cocktail.name} </Link></li>)
 
   return(
     <div>

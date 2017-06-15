@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
-import {  Route, Link } from 'react-router-dom'
+import {  Route, Link, Switch } from 'react-router-dom'
 import CocktailsList from './CocktailsList'
 import CocktailDetail from './CocktailDetail'
+import NewCocktailForm from './NewCocktailForm'
+import { Grid, Row, Col, Container, Button } from 'reactstrap'
+
+
 
 
 
@@ -28,18 +32,27 @@ export default class CocktailsPage extends Component{
 
   render(){
     return(
-
-      <div>
-        <h1>Its Boozey Baby</h1>
+    <div>
+    <Row>
+      <Col md="4">
+        <h1>Its a Boozey Baby</h1>
         <CocktailsList cocktails={this.state.cocktails} />
-        <Route path='/cocktails/:id' render={(routerProps) => {
+      </Col>
+        <Col md="8">
+          <Switch>
+            <Route exact path="/cocktails/new" render={() => <NewCocktailForm /> }/>
+            <Route exact path='/cocktails/:id' render={(routerProps) => {
 
           const id = routerProps.match.params.id
           const drink = this.state.cocktails.find( c => c.id === parseInt(id) )
           return < CocktailDetail drink={drink} />
           }
         } />
-      </div>
+      </Switch>
+      <Link to="/cocktails/new">Add Drink</Link>
+        </Col>
+    </Row>
+    </div>
 
     )
   }
